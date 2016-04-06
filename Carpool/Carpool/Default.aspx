@@ -7,11 +7,16 @@
         <h3>Available Rides</h3>
         <p class="lead">Destination: </p>
          <p class="lead">Date: </p>
-        <p><a href="Search.aspx" class="btn btn-primary btn-lg">Search &raquo;</a></p>
+        <p><a href="FilterSearch.aspx" class="btn btn-primary btn-lg">Search &raquo;</a></p>
+
+        <h3>Rides Wanted:</h3>
+        <p class="lead">Destination</p>
+        <p class="lead">Date:</p>
+        <p><a href="FilterSearch.aspx" class="btn btn-primary btn-lg">Search &raquo;</a></p>
     </div>
 
       <div class="filterSearch">
-        <p class ="lead"> Search for your desired destination in Canada</p>
+        <h3> Search for your desired destination in Canada</h3>
         From: <asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
         To: <asp:TextBox ID="txtTo" runat="server"></asp:TextBox>
         Date: <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
