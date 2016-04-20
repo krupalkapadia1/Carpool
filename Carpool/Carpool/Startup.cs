@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Carpool.Startup))]
+[assembly: OwinStartupAttribute("CarpoolConfig", typeof(Carpool.Startup))]
 namespace Carpool
 {
     public partial class Startup {

@@ -11,19 +11,21 @@
                 <div class="form-horizontal">
                     <h4>Use a local account to log in.</h4>
                     <hr />
-                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                    <asp:PlaceHolder runat="server" ID="LoginStatus" Visible="false">
                         <p class="text-danger">
-                            <asp:Literal runat="server" ID="FailureText" />
+                            <asp:Literal runat="server" ID="StatusText" />
                         </p>
                     </asp:PlaceHolder>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                CssClass="text-danger" ErrorMessage="The email field is required." />
+
+                    <asp:PlaceHolder runat="server" ID="LoginForm" Visible="false">
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Username</asp:Label>
+                            <div class="col-md-10">
+                                <asp:TextBox runat="server" ID="UserName" CssClass="form-control" TextMode="SingleLine" />
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
+                                    CssClass="text-danger" ErrorMessage="The username field is required." />
+                            </div>
                         </div>
-                    </div>
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
                         <div class="col-md-10">
@@ -44,7 +46,16 @@
                             <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
                         </div>
                     </div>
+                    </asp:PlaceHolder>                    
                 </div>
+                
+                <asp:PlaceHolder runat="server" ID="LogoutButton" Visible="false">
+                    <div>
+                       <div>
+                          <asp:Button runat="server" OnClick="SignOut" Text="Log out" />
+                       </div>
+                    </div>
+                 </asp:PlaceHolder>
                 <p>
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
                 </p>
