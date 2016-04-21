@@ -382,6 +382,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="CarFacade.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="CarInfo.aspx.cs">
       <DependentUpon>CarInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -423,6 +427,10 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ride.cs" />
+    <Compile Include="RideFacade.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="RideRegister.aspx.cs">
       <DependentUpon>RideRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -461,6 +469,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>

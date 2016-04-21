@@ -8,6 +8,8 @@ using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Carpool.Models;
+using System.Data.Odbc;
+
 
 namespace Carpool.Account
 {
@@ -41,9 +43,36 @@ namespace Carpool.Account
             {
                 var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-
                 authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-                Response.Redirect("~/Account/Login.aspx");
+
+                // get user type, name and store them in HttpSession
+                string usertype = "";
+                try
+                {
+                    using (OdbcConnection connection = new OdbcConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString))
+                    {
+                        connection.Open();
+                        string query = "SELECT type from user "
+                            + "WHERE username='" 
+                            + user.UserName + "'";
+                        using (OdbcCommand command = new OdbcCommand(query, connection))
+                        using (OdbcDataReader dr = command.ExecuteReader())
+                        {
+                            while (dr.Read())
+                                usertype = dr[0].ToString();
+                            dr.Close();
+                        }
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("An error occured: " + ex.Message);
+                }
+                Session["usertype"] = usertype;
+                Session["username"] = UserName.Text;
+
+                Response.Redirect("~/Default.aspx");
             }
             else
             {
@@ -57,7 +86,7 @@ namespace Carpool.Account
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
-            Response.Redirect("~/Account/Login.aspx");
+            Response.Redirect("~/Default.aspx");
         }
     }
 }
