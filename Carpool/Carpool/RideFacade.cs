@@ -1,7 +1,11 @@
 ﻿using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Data.Odbc;
 using System;
+using System.Threading;
+
+
 
 namespace Carpool
 {
@@ -31,29 +35,22 @@ namespace Carpool
             if(Session["Ride"]!=null)
             {
                 Ride ride = (Ride)Session["Ride"];
-                try
+               
+                using (OdbcConnection connection = new OdbcConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString))
                 {
-                    using (OdbcConnection connection = new OdbcConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString))
-                    {
-                        connection.Open();
-                        string query = "INSERT INTO ride (driver, startingpoint, destination, date, time) "
-                            + "values ('" + ride.Driver + "',"
-                            + "'" + ride.StartingPoint + "',"
-                            + "'" + ride.Date + "',"
-                            + "'" + ride.Time + "')";
-                        using (OdbcCommand command = new OdbcCommand(query, connection))
-                        using (OdbcDataReader dr = command.ExecuteReader())
+                    connection.Open();
+                    string query = "INSERT INTO ride (driver, startingpoint, destination, date, time) "
+                        + "values ('" + ride.Driver + "',"
+                        + "'" + ride.StartingPoint + "',"
+                        + "'" + ride.Destination + "',"
+                        + "'" + ride.Date + "',"
+                        + "'" + ride.Time + "')";
+                    using (OdbcCommand command = new OdbcCommand(query, connection))
+                    using (OdbcDataReader dr = command.ExecuteReader())
 
-                        connection.Close();
-
-                        Response.Redirect("~/Confirm.aspx");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("Error occurred");
-                    //Response.Write("An error occured: " + ex.Message);
-                }
+                    connection.Close();                        
+                }                   
+                
             }
             else
             {

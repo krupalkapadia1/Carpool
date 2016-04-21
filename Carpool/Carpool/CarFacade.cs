@@ -40,7 +40,8 @@ namespace Carpool
                             while (dr.Read())
                             {
                                 car.Type = dr["type"].ToString();                               
-                                car.Capacity = Int32.Parse(dr["capacity"].ToString());                                
+                                car.Capacity = Int32.Parse(dr["capacity"].ToString());
+                                car.License = dr["license"].ToString();                                
                             }
                             dr.Close();
                             Session["car"] = car;
@@ -62,58 +63,60 @@ namespace Carpool
             return car;
         }
 
-        public void AddCar(string type, int capacity, string license)
+        public void AddCar()
         {
             Ride ride = (Ride)Session["ride"];
             string username = (String)Session["username"];
             
-            // existing car
             if ((Car)Session["car"] != null)
             {
                 ride = (Ride)Session["ride"];
                 ride.setCar((Car)Session["car"]);
             }
-            // new car
-            else
+        }
+
+        public void AddCar(string type, int capacity, string license)
+        {
+            Ride ride = (Ride)Session["ride"];
+            string username = (String)Session["username"];
+                        
+            Car car = new Car(type, capacity, license);                
+            try
             {
-                Car car = new Car(type, capacity, license);
-                ride.setCar(car);
-                try
+                using (OdbcConnection connection = new OdbcConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString))
                 {
-                    using (OdbcConnection connection = new OdbcConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString))
-                    {
-                        connection.Open();
-                        string carQuery = "INSERT INTO car "
-                            + "(type, capacity, license) "
-                            + "VALUES "
-                            + "('" + type + "'," + capacity.ToString() + ",'" + license + "')";
-                        using (OdbcCommand command = new OdbcCommand(carQuery, connection))
-                        using (OdbcDataReader dr = command.ExecuteReader())                            
+                    connection.Open();
+                    string carQuery = "INSERT INTO car "
+                        + "(type, capacity, license) "
+                        + "VALUES "
+                        + "('" + type + "'," + capacity.ToString() + ",'" + license + "')";
+                    using (OdbcCommand command = new OdbcCommand(carQuery, connection))
+                    using (OdbcDataReader dr = command.ExecuteReader())                            
+
+                    connection.Close();
+                }                    
+
+                using (OdbcConnection connection = new OdbcConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString))
+                {
+                    connection.Open();
+                    string driverQuery = "UPDATE user "
+                        + "SET car_id="
+                        + "(SELECT id FROM car "
+                        + "WHERE license='" + license + "') "
+                        + "WHERE username='" + username + "'";
+                    using (OdbcCommand command = new OdbcCommand(driverQuery, connection))
+                    using (OdbcDataReader dr = command.ExecuteReader())
 
                         connection.Close();
-                    }                    
-
-                    using (OdbcConnection connection = new OdbcConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString))
-                    {
-                        connection.Open();
-                        string driverQuery = "UPDATE user "
-                            + "SET car_id="
-                            + "(SELECT id FROM car "
-                            + "WHERE license='" + license + "') "
-                            + "WHERE username='" + username + "'";
-                        using (OdbcCommand command = new OdbcCommand(driverQuery, connection))
-                        using (OdbcDataReader dr = command.ExecuteReader())
-
-                            connection.Close();
-                    }
                 }
-                catch (Exception ex)
-                {
-                    Response.Write("An error occured: " + ex.Message);
-                }
-
             }
-            
+            catch (Exception ex)
+            {
+                Response.Write("An error occured: " + ex.Message);
+            }
+
+            Session["car"] = car;
+            ride.setCar(car);                                        
         }
     }
 }

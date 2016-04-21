@@ -4,15 +4,66 @@
 
   
     <div class="jumbotron">
-        <h3>Available Rides</h3>
-        <p class="lead">Destination: </p>
-         <p class="lead">Date: </p>
-        <p><a href="FilterSearch.aspx" class="btn btn-primary btn-lg">Search &raquo;</a></p>
+        <h3>Available Rides
+            <asp:ListView ID="RideList" runat="server" ItemPlaceholderID="rideItemPlaceHolder" OnPagePropertiesChanging="OnPagePropertiesChanging">
+                <LayoutTemplate>
+                    <table>
+                        <tr>
+                            <th>
+                                Starting Point
+                            </th>
+                            <th>
+                                Destination
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Time
+                            </th>
+                            <th>
+                                Driver
+                            </th>
+                        </tr>
+                        <asp:PlaceHolder runat="server" ID="rideItemPlaceHolder"></asp:PlaceHolder>
+                        <tr>
+                            <td colspan="3">
+                                <asp:DataPager ID="DataPager" runat="server" PagedControlID="RideList" PageSize="5">
+                                    <Fields>
+                                        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true" ShowNextPageButton="false" />
+                                    </Fields>
+                                </asp:DataPager>
+                            </td>
+                        </tr>
+                    </table>
+                </LayoutTemplate>
+                <GroupTemplate>
+                    <tr>
+                        <asp:PlaceHolder runat="server" ID="rideItemPlaceHolder"></asp:PlaceHolder>
+                    </tr>
+                </GroupTemplate>
+                <ItemTemplate>
+                    <td>
+                        <%# Eval("startingpoint") %>
+                    </td>
+                    <td>
+                        <%# Eval("destination") %>
+                    </td>
+                    <td>
+                        <%# Eval("date") %>
+                    </td>
+                    <td>
+                        <%# Eval("time") %>
+                    </td>
+                    <td>
+                        <%# Eval("username") %>
+                    </td>
+                </ItemTemplate>
+            </asp:ListView>
+        </h3>
+        
 
-        <h3>Rides Wanted:</h3>
-        <p class="lead">Destination</p>
-        <p class="lead">Date:</p>
-        <p><a href="FilterSearch.aspx" class="btn btn-primary btn-lg">Search &raquo;</a></p>
+        
     </div>
 
       <div class="filterSearch">

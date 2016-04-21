@@ -22,7 +22,7 @@ namespace Carpool
                         ShowCarInfo.Visible = true;
                         ShowCarType.Text = string.Format(facade.UserCar((String)Session["username"]).Type);
                         ShowCapacity.Text = string.Format(facade.UserCar((String)Session["username"]).Capacity.ToString());
-                        ShowLicense.Text = string.Format(facade.UserCar((String)Session["license"]).License);
+                        ShowLicense.Text = string.Format(facade.UserCar((String)Session["username"]).License);
                     }
                     else
                     {
@@ -40,9 +40,18 @@ namespace Carpool
         public void ConfirmRide(object sender, EventArgs e)
         {            
             // set car to the ride, add the new car into DB
-            CarFacade.Instance().AddCar(CarType.Text, Int32.Parse(Capacity.Text), LicenseNumber.Text);
+            if (EditCarInfo.Visible)
+            {
+                CarFacade.Instance().AddCar(CarType.Text, Int32.Parse(Capacity.Text), LicenseNumber.Text);
+            }
+            else
+            {
+                CarFacade.Instance().AddCar();
+            }
+            
             // add the car into the ride object, store the ride into DB
             RideFacade.Instance().ConfirmRide();
+            Response.Redirect("~/Confirm.aspx");
         }
     }
 }
