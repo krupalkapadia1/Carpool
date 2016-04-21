@@ -234,4 +234,3 @@ C:\Users\PaulBudgell\Desktop\Suhn\Carpool\Carpool\Carpool\bin\Microsoft.Owin.Sec
 C:\Users\PaulBudgell\Desktop\Suhn\Carpool\Carpool\Carpool\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\PaulBudgell\Desktop\Suhn\Carpool\Carpool\Carpool\obj\Debug\Carpool.dll
 C:\Users\PaulBudgell\Desktop\Suhn\Carpool\Carpool\Carpool\obj\Debug\Carpool.pdb
-C:\Users\PaulBudgell\Desktop\Suhn\Carpool\Carpool\Carpool\obj\Debug\Carpool.csprojResolveAssemblyReference.cache

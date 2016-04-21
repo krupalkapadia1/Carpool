@@ -5,7 +5,7 @@
   
     <div class="jumbotron">
         <h3>Available Rides
-            <asp:ListView ID="RideList" runat="server" ItemPlaceholderID="rideItemPlaceHolder" OnPagePropertiesChanging="OnPagePropertiesChanging">
+            <asp:ListView ID="RideList" runat="server" ItemPlaceholderID="rideItemPlaceHolder" GroupPlaceholderID="groupPlaceHolder" OnPagePropertiesChanging="OnPagePropertiesChanging">
                 <LayoutTemplate>
                     <table>
                         <tr>
@@ -25,7 +25,7 @@
                                 Driver
                             </th>
                         </tr>
-                        <asp:PlaceHolder runat="server" ID="rideItemPlaceHolder"></asp:PlaceHolder>
+                        <asp:PlaceHolder runat="server" ID="groupPlaceHolder"></asp:PlaceHolder>
                         <tr>
                             <td colspan="3">
                                 <asp:DataPager ID="DataPager" runat="server" PagedControlID="RideList" PageSize="5">
@@ -56,7 +56,7 @@
                         <%# Eval("time") %>
                     </td>
                     <td>
-                        <%# Eval("username") %>
+                        <%# Eval("driver") %>
                     </td>
                 </ItemTemplate>
             </asp:ListView>
