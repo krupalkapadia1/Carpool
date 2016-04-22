@@ -15,10 +15,13 @@ namespace Carpool.Account
 {
     public partial class Login : Page
     {
+        static string prevPage = String.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                prevPage = Request.UrlReferrer.ToString();
+
                 if (User.Identity.IsAuthenticated)
                 {
                     StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
@@ -70,9 +73,9 @@ namespace Carpool.Account
                     Response.Write("An error occured: " + ex.Message);
                 }
                 Session["usertype"] = usertype;
-                Session["username"] = UserName.Text;
+                Session["loginUser"] = UserName.Text;
 
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect(prevPage);
             }
             else
             {
@@ -86,7 +89,14 @@ namespace Carpool.Account
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
+            Session["loginUser"] = null;
+            Session.Clear();
             Response.Redirect("~/Default.aspx");
+        }
+
+        public void OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Account/Register.aspx");
         }
     }
 }

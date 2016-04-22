@@ -200,6 +200,7 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="CarInfo.aspx" />
     <Content Include="ConfirmDriver.aspx" />
+    <Content Include="ConfirmPassenger.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -215,6 +216,7 @@
     </Content>
     <Content Include="Confirm.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="RideDetail.aspx" />
     <Content Include="RideRegister.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -401,6 +403,13 @@
     <Compile Include="ConfirmDriver.aspx.designer.cs">
       <DependentUpon>ConfirmDriver.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmPassenger.aspx.cs">
+      <DependentUpon>ConfirmPassenger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmPassenger.aspx.designer.cs">
+      <DependentUpon>ConfirmPassenger.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -428,6 +437,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ride.cs" />
+    <Compile Include="RideDetail.aspx.cs">
+      <DependentUpon>RideDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RideDetail.aspx.designer.cs">
+      <DependentUpon>RideDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RideFacade.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -453,6 +469,7 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UpdateBooking.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

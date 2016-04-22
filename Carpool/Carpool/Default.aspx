@@ -4,10 +4,12 @@
 
   
     <div class="jumbotron">
-        <h3>Available Rides
-            <asp:ListView ID="RideList" runat="server" ItemPlaceholderID="rideItemPlaceHolder" GroupPlaceholderID="groupPlaceHolder" OnPagePropertiesChanging="OnPagePropertiesChanging">
+        <h3>Available Rides</h3>
+        <h5>
+            <asp:ListView ID="RideList" runat="server" ItemPlaceholderID="rideItemPlaceHolder" 
+                GroupPlaceholderID="groupPlaceHolder" OnPagePropertiesChanging="OnPagePropertiesChanging">
                 <LayoutTemplate>
-                    <table>
+                    <table class="table table-striped">
                         <tr>
                             <th>
                                 Starting Point
@@ -30,7 +32,7 @@
                             <td colspan="3">
                                 <asp:DataPager ID="DataPager" runat="server" PagedControlID="RideList" PageSize="5">
                                     <Fields>
-                                        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true" ShowNextPageButton="false" />
+                                        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="True" ShowNextPageButton="True" />
                                     </Fields>
                                 </asp:DataPager>
                             </td>
@@ -58,11 +60,12 @@
                     <td>
                         <%# Eval("driver") %>
                     </td>
+                    <td>
+                        <a href="RideDetail.aspx?id=<%#: Eval("id") %>&username=<%#: Eval("driver") %>" class="btn btn-primary btn-lg">Select &raquo;</a>
+                    </td>
                 </ItemTemplate>
             </asp:ListView>
-        </h3>
-        
-
+            </h5>
         
     </div>
 

@@ -42,7 +42,7 @@ namespace Carpool
         
         public void AddRide(object sender, EventArgs e)
         {
-            RideFacade.Instance().SaveRideInSession((String)Session["username"],
+            RideFacade.Instance().SaveRideInSession((String)Session["loginUser"],
                 StartingPoint.Text,
                 Destination.Text,
                 DepartingDate.Text,

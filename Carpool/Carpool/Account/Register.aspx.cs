@@ -61,10 +61,12 @@ namespace Carpool.Account
 
             if (result.Succeeded)
             {
+                Session["usertype"] = type;
+                Session["loginUser"] = UserName.Text;
                 var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authenticationManager.SignIn(new Microsoft.Owin.Security.AuthenticationProperties() { }, userIdentity);
-                Response.Redirect("~/Account/Login.aspx");
+                Response.Redirect("~/Default.aspx");
             }
             else
             {                

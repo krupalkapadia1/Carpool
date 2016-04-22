@@ -26,15 +26,15 @@ namespace Carpool
             try
             {
                 using (OdbcConnection connection = new OdbcConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString))
-                {                   
+                {
                     connection.Open();
-                   
-                    string query = "SELECT * from ride";
+
+                    string query = "SELECT * from ride WHERE isFull=0";
 
                     // testing
                     OdbcDataAdapter ada = new OdbcDataAdapter(query, connection);
                     try
-                    {                        
+                    {
                         DataTable dt = new DataTable();
                         ada.Fill(dt);
                         RideList.DataSource = dt;
@@ -52,7 +52,7 @@ namespace Carpool
                 Response.Write("An error occured: " + ex.Message);
             }
         }
-        
+
         protected void OnPagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             (RideList.FindControl("DataPager") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
