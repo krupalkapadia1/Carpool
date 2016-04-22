@@ -69,14 +69,14 @@
         
     </div>
 
-      <div class="filterSearch">
+      <%--<div class="filterSearch">
         <h3> Search for your desired destination in Canada</h3>
         From: <asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
         To: <asp:TextBox ID="txtTo" runat="server"></asp:TextBox>
         Date: <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
         <a href="FilterSearch.aspx" class="btn btn-primary btn-lg">Go &raquo;</a>
         
-    </div>
+    </div>--%>
 
 
     

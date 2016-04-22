@@ -100,12 +100,20 @@ namespace Carpool
                     Response.Redirect("~/Account/Login.aspx");
                 }
                 else
-                {
-                    SaveBooking(this.Request.QueryString["id"], (String)Session["loginUser"]);
+                {                                             
+                    if (Session["usertype"].Equals("driver"))
+                    {
+                        ErrorMessage.Text = "Oooops, this page is for passenger users only.";
+                    }
+                    else
+                    {
+                        SaveBooking(this.Request.QueryString["id"], (String)Session["loginUser"]);
 
-                    IncrementCurrBooking(this.Request.QueryString["id"]);                    
+                        IncrementCurrBooking(this.Request.QueryString["id"]);
 
-                    Response.Redirect("~/ConfirmPassenger.aspx");
+                        Response.Redirect("~/ConfirmPassenger.aspx");
+                    }
+                    
                 }
             }
             else

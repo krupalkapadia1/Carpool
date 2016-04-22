@@ -17,12 +17,12 @@ namespace Carpool
             {                
                 if (User.Identity.IsAuthenticated)
                 {                                      
-                    if(facade.UserCar((String)Session["username"]) != null)
+                    if(facade.UserCar((String)Session["loginUser"]) != null)
                     {
                         ShowCarInfo.Visible = true;
-                        ShowCarType.Text = string.Format(facade.UserCar((String)Session["username"]).Type);
-                        ShowCapacity.Text = string.Format(facade.UserCar((String)Session["username"]).Capacity.ToString());
-                        ShowLicense.Text = string.Format(facade.UserCar((String)Session["username"]).License);
+                        ShowCarType.Text = string.Format(facade.UserCar((String)Session["loginUser"]).Type);
+                        ShowCapacity.Text = string.Format(facade.UserCar((String)Session["loginUser"]).Capacity.ToString());
+                        ShowLicense.Text = string.Format(facade.UserCar((String)Session["loginUser"]).License);
                     }
                     else
                     {
@@ -51,7 +51,7 @@ namespace Carpool
             
             // add the car into the ride object, store the ride into DB
             RideFacade.Instance().ConfirmRide();
-            Response.Redirect("~/Confirm.aspx");
+            Response.Redirect("~/Account/Manage.aspx");
         }
     }
 }

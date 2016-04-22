@@ -56,9 +56,7 @@
                        </div>
                     </div>
                  </asp:PlaceHolder>
-                <p>
-                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
-                </p>
+                
                 
             </section>
         </div>

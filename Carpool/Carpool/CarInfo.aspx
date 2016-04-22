@@ -20,7 +20,7 @@
 
     <asp:PlaceHolder runat="server" ID="EditCarInfo" Visible="false">
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="LicenseNumber" CssClass="col-md-2 control-label">Car Type</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="LicenseNumber" CssClass="col-md-2 control-label">License Plate Number</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="LicenseNumber" CssClass="form-control" TextMode="SingleLine" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="LicenseNumber"

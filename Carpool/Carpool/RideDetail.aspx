@@ -51,8 +51,10 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <asp:Button runat="server" OnClick="BookRide" Text="Book This Ride" CssClass="btn btn-default" />
-<%--            <a href="ConfirmPassenger.aspx?id=<%#: Eval("id") %>%>" class="btn btn-primary btn-lg">Book this ride &raquo;</a>--%>
         </div>
+        <p class="text-danger">
+        <asp:Literal runat="server" ID="ErrorMessage" />
+    </p>
     </div>
 
 

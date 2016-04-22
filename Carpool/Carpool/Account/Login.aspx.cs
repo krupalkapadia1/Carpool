@@ -94,7 +94,7 @@ namespace Carpool.Account
             Response.Redirect("~/Default.aspx");
         }
 
-        public void OnClick(object sender, EventArgs e)
+        public void SignUp(object sender, EventArgs e)
         {
             Response.Redirect("~/Account/Register.aspx");
         }

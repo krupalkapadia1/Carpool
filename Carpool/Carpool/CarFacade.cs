@@ -78,7 +78,7 @@ namespace Carpool
         public void AddCar(string type, int capacity, string license)
         {
             Ride ride = (Ride)Session["ride"];
-            string username = (String)Session["username"];
+            string username = (String)Session["loginUser"];
                         
             Car car = new Car(type, capacity, license);                
             try
